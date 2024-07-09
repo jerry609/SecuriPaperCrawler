@@ -48,5 +48,4 @@ python acm_downloader.py --year '23 --url https://youruniversity.edu/library
 ## 贡献
 欢迎为 `ACM 下载器` 做出贡献。请 fork 本仓库并提交带有您改进的 pull request。
 
----
 
