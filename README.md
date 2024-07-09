@@ -43,12 +43,10 @@ python acm_downloader.py --year '23 --url https://youruniversity.edu/library
 此脚本仅供教育和研究目的使用。请确保您有权从 ACM 数字图书馆下载内容。
 
 ## 许可证
-本项目采用 MIT 许可证授权 - 详情见 LICENSE 文件。
+本项目采用 MIT 许可证授权 
 
 ## 贡献
 欢迎为 `ACM 下载器` 做出贡献。请 fork 本仓库并提交带有您改进的 pull request。
 
 ---
-
-确保在 README 中提到的 LICENSE 文件存在，并根据您的具体需求或环境中的任何更新调整脚本或文档！
 
