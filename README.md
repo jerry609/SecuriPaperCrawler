@@ -26,7 +26,8 @@ pip install requests lxml urllib3
 ```bash
 python acm_downloader.py --year '23 --url https://example.com/path/to/library
 ```
-
+代码里的url是如下图，经过学校图书馆vpn跳转后的ACM期刊网站链接
+![image](https://github.com/jerry609/ccs-spider/assets/83530782/be92e939-a87b-4a92-b240-de65d4494fe0)
 ### 参数
 - `year`: 会议的年份，用两位数字格式表示（例如，'21, '22, '23）。
 - `--url`: 访问 ACM 数字图书馆的基本 URL，通常根据您的机构订阅或 VPN 设置而有所不同。
@@ -50,6 +51,4 @@ python acm_downloader.py --year '23 --url https://youruniversity.edu/library
 ---
 
 确保在 README 中提到的 LICENSE 文件存在，并根据您的具体需求或环境中的任何更新调整脚本或文档！
-## 其他
-代码里的url是如下图，经过学校图书馆vpn跳转后的ACM期刊网站链接
-![image](https://github.com/jerry609/ccs-spider/assets/83530782/be92e939-a87b-4a92-b240-de65d4494fe0)
+
