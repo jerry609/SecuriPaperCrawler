@@ -1,5 +1,6 @@
 ## 概述
-`SecuriPaperBot` 是一个 Python 脚本，用于从 ACM 数字图书馆下载 ACM 会议论文集。该工具特别适用于需要从特定会议年份获取大量论文的研究人员和学生。目前只针对ccs会议集，后续将更新迭代为四大顶会爬取。
+SecuriPaperBot 是一个专为计算机信息安全领域设计的爬虫程序，旨在自动化地从顶级学术会议中获取最新的研究论文。该程序支持从IEEE Symposium on Security and Privacy (IEEE S&P)、Network and Distributed System Security Symposium (NDSS)、ACM Conference on Computer and Communications Security (ACM CCS) 以及 USENIX Security Symposium (USENIX Security)等会议上爬取论文。
+目前适用于用于从 ACM 数字图书馆下载 ACM 会议论文集。该工具特别适用于需要从特定会议年份获取大量论文的研究人员和学生。目前只针对ccs会议集，后续将更新迭代为四大顶会爬取。
 
 ## 功能
 - 从指定的 ACM 会议年份下载所有 PDF。
