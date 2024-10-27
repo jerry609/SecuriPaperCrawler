@@ -40,8 +40,44 @@ python acm_downloader.py --year '23 --url https://example.com/path/to/library
 python acm_downloader.py --year '23 --url https://youruniversity.edu/library
 ```
 
-## 注意事项
-此脚本仅供教育和研究目的使用。请确保您有权从 ACM 数字图书馆下载内容。
+## 待做
+```mermaid
+graph TD
+    A[开始] --> B[文献收集与预处理]
+    B --> |并行处理| C1[自动化文献搜索]
+    B --> |并行处理| C2[建立文献数据库]
+    
+    C1 --> D[GitHub URL提取]
+    C2 --> D
+    
+    D --> E[代码仓库分析与过滤]
+    E --> |质量评估| F[高质量仓库]
+    E --> |自动过滤| G[低质量仓库]
+    
+    F --> H[智能代码分析]
+    H --> |并行处理| I1[静态代码分析]
+    H --> |并行处理| I2[动态运行分析]
+    H --> |并行处理| I3[依赖关系分析]
+    
+    I1 --> J[模块提取与评估]
+    I2 --> J
+    I3 --> J
+    
+    J --> K[知识库构建]
+    K --> L[可复用模块库]
+    K --> M[最佳实践文档]
+    
+    L --> N[持续优化]
+    M --> N
+    N --> O[结束]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style O fill:#f9f,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+    style G fill:#fbb,stroke:#333,stroke-width:2px
+    style L fill:#bbf,stroke:#333,stroke-width:2px
+    style M fill:#bbf,stroke:#333,stroke-width:2px
+```
 
 ## 许可证
 本项目采用 MIT 许可证授权 
