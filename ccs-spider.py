@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @File: acm_downloader.py
-# @Author: Sesla
 # @Time: 2024.02.27 16:57
 # @Software: PyCharm
 
