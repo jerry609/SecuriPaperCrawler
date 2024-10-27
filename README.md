@@ -1,46 +1,100 @@
-## 概述
-SecuriPaperBot 是一个专为计算机信息安全领域设计的爬虫程序，旨在自动化地从顶级学术会议中获取最新的研究论文。该程序支持从IEEE Symposium on Security and Privacy (IEEE S&P)、Network and Distributed System Security Symposium (NDSS)、ACM Conference on Computer and Communications Security (ACM CCS) 以及 USENIX Security Symposium (USENIX Security)等会议上爬取论文。
-目前适用于用于从 ACM 数字图书馆下载 ACM 会议论文集。该工具特别适用于需要从特定会议年份获取大量论文的研究人员和学生。目前只针对ccs会议集，后续将更新迭代为四大顶会爬取。
+# SecuriPaperBot: 安全顶会论文分析框架
 
-## 功能
-- 从指定的 ACM 会议年份下载所有 PDF。
-- 自动清理文件名，避免在不兼容的文件系统上出错。
-- 支持在内网或代理环境下绕过 SSL 验证。
+## 📚 概述
 
-## 系统要求
-- Python 3.x
-- `requests`
-- `lxml`
-- `urllib3`
-- 网络接入
+SecuriPaperBot 是一个专为计算机信息安全领域设计的智能论文分析框架，集成了自动化爬虫和深度代码分析功能。该框架支持从四大安全顶会（IEEE S&P、NDSS、ACM CCS、USENIX Security）自动获取论文，并进行深入的代码分析和知识提取。
 
-## 安装
-确保已安装 Python，然后使用以下命令安装所需的包：
+## ✨ 核心功能
 
+### 1. 论文获取
+- 支持四大顶会论文自动下载
+  - IEEE Symposium on Security and Privacy (IEEE S&P)
+  - Network and Distributed System Security Symposium (NDSS)
+  - ACM Conference on Computer and Communications Security (ACM CCS)
+  - USENIX Security Symposium
+- 智能文件名处理和元数据提取
+- 支持机构VPN和代理配置
+
+### 2. 代码分析
+- 自动提取论文中的代码仓库链接
+- 深度代码质量分析
+- 可复用模块识别
+- 安全漏洞检测
+- 最佳实践提取
+
+### 3. 知识库构建
+- 自动生成API文档
+- 构建代码复用库
+- 漏洞模式总结
+- 攻防技术归纳
+
+## 🛠 系统要求
+
+### 基础环境
+- Python 3.8+
+- 机构VPN或代理（用于访问ACM/IEEE数据库）
+- Git
+
+### Python依赖
 ```bash
+# 基础依赖
 pip install requests lxml urllib3
+
+# 分析框架依赖
+pip install paper-analysis-framework[security]
 ```
 
-## 使用方法
-通过命令行运行脚本，提供会议的年份和您的 ACM 数字图书馆访问点的基本 URL（通常通过大学 VPN）。
+## 📦 安装指南
 
+### 方法1：使用pip安装
 ```bash
-python acm_downloader.py --year '23 --url https://example.com/path/to/library
+pip install securipaperbot
 ```
-代码里的url是如下图，经过学校图书馆vpn跳转后的ACM期刊网站链接
-![image](https://github.com/jerry609/ccs-spider/assets/83530782/be92e939-a87b-4a92-b240-de65d4494fe0)
-### 参数
-- `year`: 会议的年份，用两位数字格式表示（例如，'21, '22, '23）。
-- `--url`: 访问 ACM 数字图书馆的基本 URL，通常根据您的机构订阅或 VPN 设置而有所不同。
 
-## 示例
-下载 2023 年 ACM CCS 会议论文集：
-
+### 方法2：从源码安装
 ```bash
-python acm_downloader.py --year '23 --url https://youruniversity.edu/library
+git clone https://github.com/yourusername/securipaperbot.git
+cd securipaperbot
+pip install -e .
 ```
 
-## 待做
+## 🚀 快速开始
+
+### 1. 配置环境
+```bash
+# 设置API密钥
+export OPENAI_API_KEY=your_api_key
+export GITHUB_TOKEN=your_github_token
+
+# 配置机构访问
+export ACM_LIBRARY_URL=your_institution_url
+```
+
+### 2. 下载论文
+```bash
+# 下载指定年份的CCS论文
+python -m securipaperbot.downloader --conference ccs --year '23 --url $ACM_LIBRARY_URL
+
+# 下载多个会议
+python -m securipaperbot.downloader --conference "ccs,sp,ndss" --year '23
+```
+
+### 3. 分析论文
+```python
+from securipaperbot import PaperAnalyzer
+
+# 创建分析器实例
+analyzer = PaperAnalyzer(config={
+    'analysis_depth': 'detailed',
+    'focus': 'security'
+})
+
+# 分析论文
+results = analyzer.analyze_paper("path/to/paper.pdf")
+```
+
+## 🔄 工作流程
+
 ```mermaid
 graph TD
     A[开始] --> B[文献收集与预处理]
@@ -70,19 +124,140 @@ graph TD
     L --> N[持续优化]
     M --> N
     N --> O[结束]
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style O fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px
-    style G fill:#fbb,stroke:#333,stroke-width:2px
-    style L fill:#bbf,stroke:#333,stroke-width:2px
-    style M fill:#bbf,stroke:#333,stroke-width:2px
+```
+```mermaid
+graph TD
+    subgraph Input
+        A[论文URL/PDF] --> B[WorkflowCoordinator]
+    end
+
+    subgraph Analysis Phase
+        B --> C[Research Agent]
+        C --> |提取论文信息| D[代码链接/技术栈]
+        D --> E[Code Analysis Agent]
+        E --> |代码分析| F[模块/依赖/质量]
+    end
+
+    subgraph Evaluation Phase
+        F --> G[Quality Assessment Agent]
+        G --> |质量评估| H[质量报告]
+        H --> I[优化建议]
+    end
+
+    subgraph Documentation Phase
+        F --> J[Documentation Agent]
+        H --> J
+        I --> J
+        J --> |生成文档| K[API文档]
+        J --> |生成文档| L[使用教程]
+        J --> |生成文档| M[最佳实践]
+    end
+
+    subgraph Integration Phase
+        K --> N[知识库集成]
+        L --> N
+        M --> N
+    end
+
+    subgraph Output
+        N --> O[完整分析报告]
+    end
+
+    classDef phase fill:#f9f,stroke:#333,stroke-width:2px;
+    class Analysis,Evaluation,Documentation,Integration phase;
 ```
 
-## 许可证
-本项目采用 MIT 许可证授权 
+## 📊 使用示例
 
-## 贡献
-欢迎为 `ACM 下载器` 做出贡献。请 fork 本仓库并提交带有您改进的 pull request。
+### 基础用法
+```python
+from securipaperbot import SecuriPaperBot
 
+bot = SecuriPaperBot()
+
+# 下载并分析论文
+papers = bot.fetch_papers(conference='ccs', year='23')
+for paper in papers:
+    analysis = bot.analyze_paper(paper)
+    bot.save_analysis(analysis)
+```
+
+### 高级配置
+```python
+config = {
+    'download': {
+        'conferences': ['ccs', 'sp', 'ndss', 'usenix'],
+        'years': ['21', '22', '23'],
+        'proxy': 'your_proxy_url'
+    },
+    'analysis': {
+        'depth': 'comprehensive',
+        'focus': ['vulnerability', 'exploit', 'defense'],
+        'code_quality_threshold': 0.8
+    },
+    'output': {
+        'format': 'markdown',
+        'save_path': './analysis_results'
+    }
+}
+
+bot = SecuriPaperBot(config)
+```
+
+## 📝 特定会议配置
+
+### ACM CCS
+```python
+# ACM CCS专用下载器配置
+class CCSConfig:
+    base_url = "https://dl.acm.org/doi/proceedings/10.1145/"
+    paper_pattern = r"10\.1145/\d+\.\d+"
+    download_delay = 2  # 避免请求过快
+```
+
+### IEEE S&P
+```python
+# IEEE S&P专用下载器配置
+class SPConfig:
+    base_url = "https://ieeexplore.ieee.org/xpl/conhome/"
+    paper_pattern = r"10\.1109/SP\.\d+\.\d+"
+    auth_required = True
+```
+
+## 🔍 进阶功能
+
+### 1. 自定义分析器
+```python
+from securipaperbot import BaseAnalyzer
+
+class CustomSecurityAnalyzer(BaseAnalyzer):
+    def analyze_security_pattern(self, code):
+        # 实现自定义安全模式分析
+        pass
+
+    def check_vulnerability(self, code):
+        # 实现漏洞检查
+        pass
+```
+
+### 2. 批量处理
+```python
+async def batch_process():
+    async with SecuriPaperBot() as bot:
+        tasks = [
+            bot.process_paper(paper)
+            for paper in paper_list
+        ]
+        results = await asyncio.gather(*tasks)
+```
+
+## 📋 待办事项
+
+- [ ] 添加对IEEE S&P的支持
+- [ ] 添加对NDSS的支持
+- [ ] 添加对USENIX Security的支持
+- [ ] 改进代码质量分析
+- [ ] 添加机器学习模型支持
+- [ ] 优化并行处理性能
+- [ ] 添加Web界面
 
