@@ -1,12 +1,13 @@
-# SecuriPaperBot: 安全顶会论文分析框架
+# PaperBot: 顶会论文分析框架
 
 ## 📚 概述
 
-SecuriPaperBot 是一个专为计算机信息安全领域设计的智能论文分析框架，集成了自动化爬虫和深度代码分析功能。该框架支持从四大安全顶会（IEEE S&P、NDSS、ACM CCS、USENIX Security）自动获取论文，并进行深入的代码分析和知识提取。
+PaperBot 是一个专为计算机领域设计的智能论文分析框架，集成了自动化爬虫和深度代码分析功能。目前框架尝试从四大安全顶会（IEEE S&P、NDSS、ACM CCS、USENIX Security）自动获取论文，并进行深入的代码分析和知识提取。
 
 ## ✨ 核心功能
 
 ### 1. 论文获取
+目前定向四大
 - 支持四大顶会论文自动下载
   - IEEE Symposium on Security and Privacy (IEEE S&P)
   - Network and Distributed System Security Symposium (NDSS)

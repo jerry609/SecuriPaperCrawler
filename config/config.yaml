@@ -1,0 +1,110 @@
+# securipaperbot/config/config.yaml
+
+# 下载设置
+download:
+  path: "./papers"
+  max_retries: 3
+  retry_delay: 5
+  max_concurrent_downloads: 5
+  cleanup_days: 30
+  user_agent: "SecuriPaperBot/1.0"
+  timeout: 30
+
+# 分析设置
+analysis:
+  depth: "detailed"  # basic, detailed, comprehensive
+  parallel_processing: true
+  cache_results: true
+  quality_threshold: 0.8
+  ignore_patterns:
+    - "*/test/*"
+    - "*/docs/*"
+    - "*/examples/*"
+  file_types:
+    - ".py"
+    - ".js"
+    - ".java"
+    - ".cpp"
+    - ".go"
+
+# 安全设置
+security:
+  verify_ssl: true
+  rate_limit: 60  # requests per minute
+  timeout: 30
+  allowed_domains:
+    - "dl.acm.org"
+    - "ieeexplore.ieee.org"
+    - "www.ndss-symposium.org"
+    - "www.usenix.org"
+  security_checks:
+    - "sql_injection"
+    - "xss"
+    - "command_injection"
+    - "path_traversal"
+
+# 输出设置
+output:
+  format: "markdown"  # markdown, html, pdf
+  path: "./output"
+  compress: false
+  structure:
+    - "summary"
+    - "analysis"
+    - "quality_report"
+    - "security_report"
+    - "recommendations"
+  templates:
+    summary: "templates/summary.md.j2"
+    analysis: "templates/analysis.md.j2"
+    quality_report: "templates/quality.md.j2"
+    security_report: "templates/security.md.j2"
+
+# 日志设置
+logging:
+  level: "INFO"
+  file: "logs/securipaperbot.log"
+  max_size: 10485760  # 10MB
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - "console"
+    - "file"
+
+# 缓存设置
+cache:
+  enabled: true
+  path: "./cache"
+  max_size: 1073741824  # 1GB
+  ttl: 86400  # 24 hours
+  cleanup_interval: 3600  # 1 hour
+
+# 会议设置
+conferences:
+  ccs:
+    name: "ACM CCS"
+    base_url: "https://dl.acm.org/doi/proceedings/10.1145/"
+    parser: "acm_parser"
+  sp:
+    name: "IEEE S&P"
+    base_url: "https://ieeexplore.ieee.org/xpl/conhome/"
+    parser: "ieee_parser"
+  ndss:
+    name: "NDSS"
+    base_url: "https://www.ndss-symposium.org/"
+    parser: "ndss_parser"
+  usenix:
+    name: "USENIX Security"
+    base_url: "https://www.usenix.org/conference/"
+    parser: "usenix_parser"
+
+# API设置
+apis:
+  github:
+    base_url: "https://api.github.com"
+    timeout: 30
+    rate_limit: 5000
+  openai:
+    model: "gpt-4"
+    temperature: 0.3
+    max_tokens: 2000
