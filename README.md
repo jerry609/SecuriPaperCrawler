@@ -92,6 +92,30 @@ analyzer = PaperAnalyzer(config={
 # 分析论文
 results = analyzer.analyze_paper("path/to/paper.pdf")
 ```
+## 架构
+### 系统架构
+
+```
+securipaperbot/
+├── agents/                   # 分析代理层
+│   ├── research_agent.py     # 论文分析代理
+│   ├── code_analysis_agent.py # 代码分析代理
+│   ├── quality_agent.py      # 质量评估代理
+│   └── documentation_agent.py # 文档生成代理
+├── core/
+│   ├── workflow.py          # 工作流协调器
+│   └── context.py          # 上下文管理
+└── utils/
+    ├── logger.py           # 日志工具
+    └── analyzer.py         # 分析工具
+```
+
+### Agent 说明
+
+- **Research Agent**：负责论文分析和代码链接提取
+- **Code Analysis Agent**：处理代码分析、模块识别与依赖关系分析
+- **Quality Assessment Agent**：进行代码质量评估
+- **Documentation Agent**：生成 API 文档和使用教程
 
 ## 🔄 工作流程
 
@@ -260,4 +284,6 @@ async def batch_process():
 - [ ] 添加机器学习模型支持
 - [ ] 优化并行处理性能
 - [ ] 添加Web界面
+
+
 
