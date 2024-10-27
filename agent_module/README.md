@@ -37,3 +37,45 @@ graph TD
     style I fill:#f9f,stroke:#333,stroke-width:2px
     style K fill:#f9f,stroke:#333,stroke-width:2px
 ```
+
+```mermaid
+graph TD
+    subgraph Input
+        A[论文URL/PDF] --> B[WorkflowCoordinator]
+    end
+
+    subgraph Analysis Phase
+        B --> C[Research Agent]
+        C --> |提取论文信息| D[代码链接/技术栈]
+        D --> E[Code Analysis Agent]
+        E --> |代码分析| F[模块/依赖/质量]
+    end
+
+    subgraph Evaluation Phase
+        F --> G[Quality Assessment Agent]
+        G --> |质量评估| H[质量报告]
+        H --> I[优化建议]
+    end
+
+    subgraph Documentation Phase
+        F --> J[Documentation Agent]
+        H --> J
+        I --> J
+        J --> |生成文档| K[API文档]
+        J --> |生成文档| L[使用教程]
+        J --> |生成文档| M[最佳实践]
+    end
+
+    subgraph Integration Phase
+        K --> N[知识库集成]
+        L --> N
+        M --> N
+    end
+
+    subgraph Output
+        N --> O[完整分析报告]
+    end
+
+    classDef phase fill:#f9f,stroke:#333,stroke-width:2px;
+    class Analysis,Evaluation,Documentation,Integration phase;
+```
